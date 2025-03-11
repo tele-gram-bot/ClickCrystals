@@ -8,14 +8,16 @@ import io.github.itzispyder.clickcrystals.modules.ModuleFile;
 import io.github.itzispyder.clickcrystals.modules.ModuleSetting;
 import io.github.itzispyder.clickcrystals.modules.keybinds.Keybind;
 import io.github.itzispyder.clickcrystals.modules.settings.SettingSection;
-
+import net.minecraft.client.MinecraftClient; // Add this import
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Config implements JsonSerializable<Config> {
 
-    public static final String PATH = "ClickCrystalsClient/config.json";
+    // Updated PATH to point to .minecraft/saves/clickcrystals/config.json
+    public static final String PATH = new File(MinecraftClient.getInstance().runDirectory, "saves/clickcrystals/config.json").getAbsolutePath();
+    
     private final Map<String, Integer> keybindEntries;
     private final Map<String, Positionable.Dimension> positionEntries;
     private final Map<String, ModuleFile> moduleEntries;
